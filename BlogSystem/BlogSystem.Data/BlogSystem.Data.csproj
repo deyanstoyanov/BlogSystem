@@ -70,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlogSystem.Common\BlogSystem.Common.csproj">
+      <Project>{427EF7D0-4DE3-4656-B4E9-35C191B504CE}</Project>
+      <Name>BlogSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Data.Models\BlogSystem.Data.Models.csproj">
       <Project>{47628f0e-be6a-434f-ad43-e641032c5a2a}</Project>
       <Name>BlogSystem.Data.Models</Name>

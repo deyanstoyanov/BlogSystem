@@ -1,27 +1,51 @@
 namespace BlogSystem.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    using BlogSystem.Common;
+    using BlogSystem.Data.Models;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
+        private UserManager<ApplicationUser> userManager;
+
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+
+            // TODO: Remove in production
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ApplicationDbContext context)
         {
-            // This method will be called after migrating to the latest version.
+            this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            this.SeedRoles(context);
+            this.SeedAdmin(context);
+        }
 
-            // You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            // to avoid creating duplicate seed data. E.g.
-            // context.People.AddOrUpdate(
-            // p => p.FullName,
-            // new Person { FullName = "Andrew Peters" },
-            // new Person { FullName = "Brice Lambson" },
-            // new Person { FullName = "Rowan Miller" }
-            // );
+        private void SeedAdmin(ApplicationDbContext context)
+        {
+            if (context.Users.Any())
+            {
+                return;
+            }
+
+            var admin = new ApplicationUser { Email = "admin@mysite.com", UserName = "Administrator" };
+
+            this.userManager.Create(admin, "admin123456");
+
+            this.userManager.AddToRole(admin.Id, GlobalConstants.AdminRoleName);
+        }
+
+        private void SeedRoles(ApplicationDbContext context)
+        {
+            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.AdminRoleName));
+            context.SaveChanges();
         }
     }
 }
