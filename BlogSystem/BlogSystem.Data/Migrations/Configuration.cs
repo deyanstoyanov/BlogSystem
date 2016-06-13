@@ -9,7 +9,7 @@ namespace BlogSystem.Data.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         private UserManager<ApplicationUser> userManager;
 

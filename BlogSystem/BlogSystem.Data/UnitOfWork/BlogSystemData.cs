@@ -33,9 +33,9 @@
 
         public IRepository<PostComment> PostComments => this.GetRepository<PostComment>();
 
-        public void SaveChanges()
+        public int SaveChanges()
         {
-            this.dbContext.SaveChanges();
+             return this.dbContext.SaveChanges();
         }
 
         private IRepository<T> GetRepository<T>() where T : class

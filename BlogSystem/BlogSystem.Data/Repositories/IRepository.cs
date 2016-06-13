@@ -16,6 +16,6 @@
 
         void Remove(T entity);
 
-        void SaveChanges();
+        int SaveChanges();
     }
 }

@@ -48,9 +48,9 @@
             return entity;
         }
 
-        public void SaveChanges()
+        public int SaveChanges()
         {
-            this.dbContext.SaveChanges();
+           return this.dbContext.SaveChanges();
         }
 
         private TEntity ChangeState(TEntity entity, EntityState state)

@@ -11,6 +11,6 @@
 
         IRepository<PostComment> PostComments { get; }
 
-        void SaveChanges();
+        int SaveChanges();
     }
 }
