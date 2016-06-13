@@ -5,6 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using BlogSystem.Data.Models;
     using BlogSystem.Web.Models;
 
     using Microsoft.AspNet.Identity;
@@ -14,9 +15,9 @@
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
+        private ApplicationSignInManager signInManager;
 
-        private ApplicationUserManager _userManager;
+        private ApplicationUserManager userManager;
 
         public AccountController()
         {
@@ -32,12 +33,12 @@
         {
             get
             {
-                return this._signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 
             private set
             {
-                this._signInManager = value;
+                this.signInManager = value;
             }
         }
 
@@ -45,12 +46,12 @@
         {
             get
             {
-                return this._userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
             {
-                this._userManager = value;
+                this.userManager = value;
             }
         }
 
@@ -419,16 +420,16 @@
         {
             if (disposing)
             {
-                if (this._userManager != null)
+                if (this.userManager != null)
                 {
-                    this._userManager.Dispose();
-                    this._userManager = null;
+                    this.userManager.Dispose();
+                    this.userManager = null;
                 }
 
-                if (this._signInManager != null)
+                if (this.signInManager != null)
                 {
-                    this._signInManager.Dispose();
-                    this._signInManager = null;
+                    this.signInManager.Dispose();
+                    this.signInManager = null;
                 }
             }
 

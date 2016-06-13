@@ -211,12 +211,10 @@
     <Compile Include="Models\AccountViewModels\SendCodeViewModel.cs" />
     <Compile Include="Models\AccountViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Models\ManageViewModels\AddPhoneNumberViewModel.cs" />
-    <Compile Include="Models\IdentityModels\ApplicationDbContext.cs" />
     <Compile Include="Models\ManageViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ManageViewModels\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\ManageViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\ManageViewModels\FactorViewModel.cs" />
-    <Compile Include="Models\IdentityModels\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels\ManageLoginsViewModel.cs" />
     <Compile Include="Models\ManageViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels\SetPasswordViewModel.cs" />
@@ -304,6 +302,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlogSystem.Data.Models\BlogSystem.Data.Models.csproj">
+      <Project>{47628f0e-be6a-434f-ad43-e641032c5a2a}</Project>
+      <Name>BlogSystem.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Data\BlogSystem.Data.csproj">
+      <Project>{17485a92-aa59-4324-b830-37d935148532}</Project>
+      <Name>BlogSystem.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
