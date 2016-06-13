@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class BlogPost
+    using BlogSystem.Data.Common.Models;
+
+    public class BlogPost : AuditInfo, IDeletableEntity
     {
         public BlogPost()
         {
-            this.Date = DateTime.Now;
             this.Comments = new HashSet<PostComment>();
         }
 
@@ -27,9 +28,10 @@
 
         public virtual ApplicationUser Author { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
-
         public virtual ICollection<PostComment> Comments { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

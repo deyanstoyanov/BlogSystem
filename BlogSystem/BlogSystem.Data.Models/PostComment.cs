@@ -3,7 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class PostComment
+    using BlogSystem.Data.Common.Models;
+
+    public class PostComment : AuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -19,7 +21,8 @@
 
         public virtual ApplicationUser User { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }
