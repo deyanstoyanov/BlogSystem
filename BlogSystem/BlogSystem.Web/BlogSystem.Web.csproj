@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -219,6 +223,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\AccountViewModels\ForgotViewModel.cs" />
@@ -227,6 +234,7 @@
     <Compile Include="Models\AccountViewModels\ResetPasswordViewModel.cs" />
     <Compile Include="Models\AccountViewModels\SendCodeViewModel.cs" />
     <Compile Include="Models\AccountViewModels\VerifyCodeViewModel.cs" />
+    <Compile Include="Models\HomeViewModels\IndexPageViewModel.cs" />
     <Compile Include="Models\ManageViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\ManageViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ManageViewModels\ConfigureTwoFactorViewModel.cs" />

@@ -5,6 +5,9 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
     using BlogSystem.Data.UnitOfWork;
+    using AutoMapper.QueryableExtensions;
+
+    using BlogSystem.Web.Models.HomeViewModels;
 
     public class HomeController : Controller
     {
@@ -21,7 +24,7 @@
         
         public ActionResult Index()
         {
-            var posts = this.data.Posts.All();
+            var posts = this.data.Posts.All().ProjectTo<IndexPageViewModel>();
 
             return this.View(posts);
         }
