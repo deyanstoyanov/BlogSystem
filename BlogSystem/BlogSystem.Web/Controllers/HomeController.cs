@@ -2,11 +2,28 @@
 {
     using System.Web.Mvc;
 
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+    using BlogSystem.Data.UnitOfWork;
+
     public class HomeController : Controller
     {
+        private IBlogSystemData data;
+
+        public HomeController()
+        {
+        }
+
+        public HomeController(IBlogSystemData data )
+        {
+            this.data = data;
+        }
+        
         public ActionResult Index()
         {
-            return this.View();
+            var posts = this.data.Posts.All();
+
+            return this.View(posts);
         }
 
         public ActionResult About()
