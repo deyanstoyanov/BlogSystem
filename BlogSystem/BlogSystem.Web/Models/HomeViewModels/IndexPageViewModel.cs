@@ -1,10 +1,9 @@
 ﻿namespace BlogSystem.Web.Models.HomeViewModels
 {
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using System.Collections.Generic;
 
-    public class IndexPageViewModel : IMapFrom<BlogPost>
+    public class IndexPageViewModel
     {
-        public string Title { get; set; }
+        public IEnumerable<BlogPostConciseViewModel> Posts { get; set; }
     }
 }
