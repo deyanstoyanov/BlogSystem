@@ -5,6 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Models;
 
     using Microsoft.AspNet.Identity;
@@ -12,17 +13,17 @@
     using Microsoft.Owin.Security;
 
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager signInManager;
 
         private ApplicationUserManager userManager;
 
-        public ManageController()
-        {
-        }
-
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(
+            IBlogSystemData data, 
+            ApplicationUserManager userManager, 
+            ApplicationSignInManager signInManager)
+            : base(data)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;

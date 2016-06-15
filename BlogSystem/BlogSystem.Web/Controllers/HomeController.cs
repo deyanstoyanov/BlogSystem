@@ -2,29 +2,21 @@
 {
     using System.Web.Mvc;
 
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.Repositories;
-    using BlogSystem.Data.UnitOfWork;
     using AutoMapper.QueryableExtensions;
 
+    using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Models.HomeViewModels;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private IBlogSystemData data;
-
-        public HomeController()
+        public HomeController(IBlogSystemData data)
+            : base(data)
         {
         }
 
-        public HomeController(IBlogSystemData data )
-        {
-            this.data = data;
-        }
-        
         public ActionResult Index()
         {
-            var posts = this.data.Posts.All().ProjectTo<IndexPageViewModel>();
+            var posts = this.Data.Posts.All().ProjectTo<IndexPageViewModel>();
 
             return this.View(posts);
         }
