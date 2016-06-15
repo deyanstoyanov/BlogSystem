@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -16,9 +17,11 @@
 
         public ActionResult Index()
         {
-            var posts = this.Data.Posts.All().ProjectTo<IndexPageViewModel>();
+            var posts = this.Data.Posts.All().ProjectTo<BlogPostConciseViewModel>();
 
-            return this.View(posts);
+            var model = new IndexPageViewModel { Posts = posts.ToList() };
+
+            return this.View(model);
         }
 
         public ActionResult About()

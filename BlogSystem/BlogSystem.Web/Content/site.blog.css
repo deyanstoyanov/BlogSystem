@@ -1,1 +1,15 @@
-﻿
+﻿.blog-gray-info {
+    color: gray;
+}
+
+.blog-page-header {
+    margin-top: 40px;
+}
+
+.blog-post-title {
+    text-decoration: none;
+}
+
+.blog-post-title:hover {
+    text-decoration: none;
+}
