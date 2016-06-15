@@ -1,0 +1,38 @@
+﻿@model BlogSystem.Web.Models.BlogViewModels.BlogPostViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="blog-post-tags">
+            <ul class="list-unstyled list-inline blog-info">
+                <li>
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    @Model.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+                </li>
+                <li>
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    @Model.Author
+                </li>
+            </ul>
+
+            <hr/>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        @Html.Raw(Model.Content)
+    </div>
+
+    <br/>
+</div>
