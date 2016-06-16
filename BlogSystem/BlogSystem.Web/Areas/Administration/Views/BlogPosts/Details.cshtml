@@ -1,14 +1,30 @@
 ﻿@model BlogSystem.Data.Models.BlogPost
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details for blog post";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="blog-gray-info blog-post-title">@Model.Title</h3>
+        </div>
+    </div>
+</div>
+
+<hr/>
 
 <div>
-    <h4>BlogPost</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Author.Email)
@@ -16,14 +32,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Author.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
@@ -68,7 +76,17 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    </div>
+</div>
+
+<br/>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Back to List", "Index", "BlogPosts", new { area = "Administration" }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+

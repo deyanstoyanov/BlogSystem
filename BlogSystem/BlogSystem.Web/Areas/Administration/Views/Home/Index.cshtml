@@ -1,6 +1,32 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Administration panel";
 }
 
-<h2>Admin home page</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            @Html.ActionLink("BlogPosts", "Index", "BlogPosts", new { area = "Administration" }, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            @Html.ActionLink("Create New Post", "Create", "BlogPosts", new { area = "Administration" }, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+
 
