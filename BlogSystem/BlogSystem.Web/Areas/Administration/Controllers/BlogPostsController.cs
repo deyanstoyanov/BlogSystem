@@ -38,5 +38,33 @@
 
             return this.View(blogPost);
         }
+
+        // GET: Administration/BlogPosts/Create
+        public ActionResult Create()
+        {
+            return this.View();
+        }
+
+        // POST: Administration/BlogPosts/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(
+            [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost blogPost)
+        {
+            if (blogPost != null)
+            {
+                blogPost.Author = this.UserProfile;
+                blogPost.AuthorId = this.UserProfile.Id;
+
+                if (this.ModelState.IsValid)
+                {
+                    this.Data.Posts.Add(blogPost);
+                    this.Data.SaveChanges();
+                    return this.RedirectToAction("Index");
+                }
+            }
+
+            return this.View(blogPost);
+        }
     }
 }
