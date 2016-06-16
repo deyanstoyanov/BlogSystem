@@ -20,9 +20,13 @@
         public string Title { get; set; }
 
         [Required]
+        [DataType(DataType.Html)]
+        [UIHint("tinymce_full")]
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
+        [DataType(DataType.Html)]
+        [UIHint("tinymce_full")]
         public string ShortContent { get; set; }
 
         public string AuthorId { get; set; }
