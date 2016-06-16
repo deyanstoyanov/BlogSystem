@@ -66,5 +66,44 @@
 
             return this.View(blogPost);
         }
+
+        // GET: Administration/BlogPosts/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var blogPost = this.Data.Posts.Find(id);
+            if (blogPost == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            this.ViewBag.AuthorId = new SelectList(
+                this.Data.Users.All().Where(u => u.Id == blogPost.AuthorId), 
+                "Id", 
+                "Email", 
+                blogPost.AuthorId);
+
+            return this.View(blogPost);
+        }
+
+        // POST: Administration/BlogPosts/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(
+            [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost blogPost)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.Data.Posts.Update(blogPost);
+                this.Data.SaveChanges();
+                return this.RedirectToAction("Index");
+            }
+
+            return this.View(blogPost);
+        }
     }
 }
