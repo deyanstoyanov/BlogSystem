@@ -3,27 +3,32 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
     </div>
 </div>
 
-<hr/>
+<hr />
 
 @if (Model.Posts.Any())
 {
     foreach (var post in Model.Posts)
     {
-        <div class="container">
+        <div class="container blog-post">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
                         <h3>
                             @Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id }, new { @class = "blog-post-title" })
                         </h3>
+
+                        <hr/>
+
                     </div>
-                    <div class="blog-post-tags">
+                    <div class="blog-post-tags blog-post-home-page-info">
                         <ul class="list-unstyled list-inline blog-post-tags">
                             <li>
                                 <i class="glyphicon glyphicon-calendar"></i>
@@ -34,11 +39,26 @@
                                 @post.Author
                             </li>
                         </ul>
+
+                        <hr/>
+
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Raw(post.ShortContent)
+                </div>
+            </div>
+            <div class="row blog-button-short-content">
+                <div class="col-md-12">
+                    <a href="@Url.Action("Post", "Blog", new { id = post.Id})" class="btn btn-danger">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Read More</span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <hr/>
     }
 }
 else

@@ -49,7 +49,8 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost blogPost)
+            [Bind(Include = "Id,Title,Content,ShortContent,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
+                blogPost)
         {
             if (blogPost != null)
             {
@@ -94,7 +95,8 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost blogPost)
+            [Bind(Include = "Id,Title,Content,ShortContent,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
+                blogPost)
         {
             if (this.ModelState.IsValid)
             {

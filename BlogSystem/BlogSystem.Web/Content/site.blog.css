@@ -13,3 +13,16 @@
 .blog-post-title:hover {
     text-decoration: none;
 }
+
+.blog-post {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.blog-button-short-content {
+    margin-top: 15px;
+}
+
+.blog-post-home-page-info {
+    padding-top: 0px;
+}
