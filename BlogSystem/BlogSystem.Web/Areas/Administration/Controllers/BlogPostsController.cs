@@ -105,5 +105,34 @@
 
             return this.View(blogPost);
         }
+
+        // GET: Administration/BlogPosts/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var blogPost = this.Data.Posts.Find(id);
+            if (blogPost == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(blogPost);
+        }
+
+        // POST: Administration/BlogPosts/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var blogPost = this.Data.Posts.Find(id);
+            this.Data.Posts.Remove(blogPost);
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
     }
 }
