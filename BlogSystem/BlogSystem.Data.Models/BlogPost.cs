@@ -23,6 +23,8 @@
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
+        public string ShortContent { get; set; }
+
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
