@@ -7,18 +7,23 @@
 
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
+    using BlogSystem.Web.Infrastructure;
 
     public class BlogPostsController : AdministrationController
     {
-        public BlogPostsController(IBlogSystemData data)
+        private readonly ISanitizer sanitizer;
+
+        public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer)
             : base(data)
         {
+            this.sanitizer = sanitizer;
         }
 
         // GET: Administration/BlogPosts
         public ActionResult Index()
         {
             var blogPosts = this.Data.Posts.All().Include(b => b.Author);
+
             return this.View(blogPosts.ToList());
         }
 
@@ -59,8 +64,12 @@
 
                 if (this.ModelState.IsValid)
                 {
+                    blogPost.ShortContent = this.sanitizer.Sanitize(blogPost.ShortContent);
+                    blogPost.Content = this.sanitizer.Sanitize(blogPost.Content);
+
                     this.Data.Posts.Add(blogPost);
                     this.Data.SaveChanges();
+
                     return this.RedirectToAction("Index");
                 }
             }
@@ -134,6 +143,7 @@
             var blogPost = this.Data.Posts.Find(id);
             this.Data.Posts.Remove(blogPost);
             this.Data.SaveChanges();
+
             return this.RedirectToAction("Index");
         }
     }

@@ -1,5 +1,9 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(BlogSystem.Web.App_Start.NinjectWebCommon), "Stop")]
+using BlogSystem.Web.App_Start;
+
+using WebActivatorEx;
+
+[assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
 namespace BlogSystem.Web.App_Start
 {
@@ -9,6 +13,7 @@ namespace BlogSystem.Web.App_Start
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
+    using BlogSystem.Web.Infrastructure;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -18,20 +23,20 @@ namespace BlogSystem.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -39,7 +44,7 @@ namespace BlogSystem.Web.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -68,15 +73,20 @@ namespace BlogSystem.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IBlogSystemData>().To<BlogSystemData>()
-               .InRequestScope()
-               .WithConstructorArgument("context", p => new ApplicationDbContext());
-            kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>()
+            kernel.Bind<IBlogSystemData>()
+                .To<BlogSystemData>()
+                .InRequestScope()
+                .WithConstructorArgument("context", p => new ApplicationDbContext());
+            kernel.Bind<IUserStore<ApplicationUser>>()
+                .To<UserStore<ApplicationUser>>()
                 .InRequestScope()
                 .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
-            //kernel.Bind<IAuthenticationManager>().To<>();
+
+            // kernel.Bind<IAuthenticationManager>().To<>();
             kernel.Bind<IAuthenticationManager>()
-                .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
-        }        
+                .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
+                .InRequestScope();
+            kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
+        }
     }
 }
