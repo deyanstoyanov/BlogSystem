@@ -22,7 +22,7 @@
         // GET: Administration/BlogPosts
         public ActionResult Index()
         {
-            var blogPosts = this.Data.Posts.All().Include(b => b.Author);
+            var blogPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).Include(b => b.Author);
 
             return this.View(blogPosts.ToList());
         }
