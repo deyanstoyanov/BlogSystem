@@ -35,3 +35,14 @@
 .blog-panel-heading {
     cursor: pointer;
 }
+
+.blog-table-word-wrap {
+    word-wrap: break-word;
+    table-layout:fixed;
+}
+
+.blog-word-wrap {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+}

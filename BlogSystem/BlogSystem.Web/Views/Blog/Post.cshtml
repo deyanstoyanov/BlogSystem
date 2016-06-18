@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        <h2 class="pull-left blog-page-header blog-gray-info blog-word-wrap">@ViewBag.Title</h2>
     </div>
 </div>
 
@@ -54,7 +54,9 @@
     </div>
 
     <div class="col-md-12">
-        @Html.Raw(Model.Content)
+        <div class="blog-word-wrap">
+            @Html.Raw(Model.Content)
+        </div>
     </div>
 
     <br/>
