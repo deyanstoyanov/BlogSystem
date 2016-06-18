@@ -1,4 +1,5 @@
-﻿@model BlogSystem.Web.Models.HomeViewModels.IndexPageViewModel
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BlogSystem.Web.Models.HomeViewModels.BlogPostConciseViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -11,61 +12,70 @@
     </div>
 </div>
 
-<hr />
+<hr/>
 
-@if (Model.Posts.Any())
-{
-    foreach (var post in Model.Posts)
+<div class="row">
+    @if (Model.Any())
     {
-        <div class="container blog-post">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <h3>
-                            @Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id }, new { @class = "blog-post-title" })
-                        </h3>
+        foreach (var post in Model)
+        {
+            <div class="container blog-post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <h3>
+                                @Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id }, new { @class = "blog-post-title" })
+                            </h3>
 
-                        <hr/>
+                            <hr/>
 
+                        </div>
+                        <div class="blog-post-tags blog-post-home-page-info">
+                            <ul class="list-unstyled list-inline blog-post-tags">
+                                <li>
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                    @post.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    @post.Author
+                                </li>
+                            </ul>
+
+                            <hr/>
+
+                        </div>
                     </div>
-                    <div class="blog-post-tags blog-post-home-page-info">
-                        <ul class="list-unstyled list-inline blog-post-tags">
-                            <li>
-                                <i class="glyphicon glyphicon-calendar"></i>
-                                @post.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-pencil"></i>
-                                @post.Author
-                            </li>
-                        </ul>
-
-                        <hr/>
-
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Raw(post.ShortContent)
+                    </div>
+                </div>
+                <div class="row blog-button-short-content">
+                    <div class="col-md-12">
+                        <a href="@Url.Action("Post", "Blog", new { id = post.Id })" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Read More</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    @Html.Raw(post.ShortContent)
-                </div>
-            </div>
-            <div class="row blog-button-short-content">
-                <div class="col-md-12">
-                    <a href="@Url.Action("Post", "Blog", new { id = post.Id})" class="btn btn-danger">
-                        <i class="glyphicon glyphicon-plus"></i>
-                        <span>Read More</span>
-                    </a>
-                </div>
-            </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-12">
+            <h2 class="blog-gray-info">No posts available.</h2>
         </div>
     }
-}
-else
-{
-    <div class="row">
-        <div class="col-md-11">
-            <h2>No posts available.</h2>
+
+    <div class="col-md-12">
+        <div class="text-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
         </div>
     </div>
-}
+
+</div>
+
+

@@ -8,18 +8,24 @@
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Models.HomeViewModels;
 
+    using PagedList;
+
     public class HomeController : BaseController
     {
+        private const int PostsPerPageDefaultValue = 5;
+
         public HomeController(IBlogSystemData data)
             : base(data)
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var posts = this.Data.Posts.All().ProjectTo<BlogPostConciseViewModel>();
+            var pageNumber = page ?? 1;
 
-            var model = new IndexPageViewModel { Posts = posts.ToList() };
+            var posts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).ProjectTo<BlogPostConciseViewModel>();
+            var viewModel = new IndexPageViewModel { Posts = posts };
+            var model = viewModel.Posts.ToPagedList(pageNumber, PostsPerPageDefaultValue);
 
             return this.View(model);
         }

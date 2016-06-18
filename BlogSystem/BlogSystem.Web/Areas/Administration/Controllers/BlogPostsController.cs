@@ -9,8 +9,12 @@
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Infrastructure;
 
+    using PagedList;
+
     public class BlogPostsController : AdministrationController
     {
+        private const int PostsPerPageDefaultValue = 5;
+
         private readonly ISanitizer sanitizer;
 
         public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer)
@@ -20,11 +24,15 @@
         }
 
         // GET: Administration/BlogPosts
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var blogPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).Include(b => b.Author);
+            int pageNumber = page ?? 1;
 
-            return this.View(blogPosts.ToList());
+            var blogPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).Include(b => b.Author).ToList();
+
+            var model = new PagedList<BlogPost>(blogPosts, pageNumber, PostsPerPageDefaultValue);
+
+            return this.View(model);
         }
 
         // GET: Administration/BlogPosts/Details/5
