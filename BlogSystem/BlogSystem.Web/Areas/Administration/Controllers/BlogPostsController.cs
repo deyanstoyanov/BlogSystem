@@ -91,12 +91,6 @@
                 return this.HttpNotFound();
             }
 
-            this.ViewBag.AuthorId = new SelectList(
-                this.Data.Users.All().Where(u => u.Id == blogPost.AuthorId), 
-                "Id", 
-                "Email", 
-                blogPost.AuthorId);
-
             return this.View(blogPost);
         }
 
