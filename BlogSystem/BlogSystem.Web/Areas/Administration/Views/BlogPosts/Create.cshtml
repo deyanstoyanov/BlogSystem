@@ -23,22 +23,32 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control col-md-12" } })
                 @Html.ValidationMessageFor(model => model.Title, string.Empty, new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShortContent, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
+                <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#postShortContent">
+                    <strong>Short Content</strong>
+                    <i class="glyphicon glyphicon-collapse-down"></i>
+                </button>
+            </div>
+            <div class="col-md-10 collapse" id="postShortContent">
                 @Html.EditorFor(model => model.ShortContent, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ShortContent, string.Empty, new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
+                <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#postContent">
+                    <strong>Content</strong>
+                    <i class="glyphicon glyphicon-collapse-down"></i>
+                </button>
+            </div>
+            <div class="col-md-10 collapse" id="postContent">
                 @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
             </div>
@@ -46,14 +56,33 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success"/>
+                <input type="submit" value="Create" data-inline="true" class="btn btn-success"/>
+
+                @if (Request.UrlReferrer == null)
+                {
+                    <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-danger">
+                        <span>Cancel</span>
+                    </a>
+                }
+                else
+                {
+                    <a href="@Request.UrlReferrer" class="btn btn-danger">
+                        <span>Cancel</span>
+                    </a>
+                }
+
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index", "BlogPosts", new { area = "Administration" }, new { @class = "btn btn-primary" })
+<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-primary">
+            <i class="glyphicon glyphicon-align-justify"></i>
+            <span>Blog Posts</span>
+        </a>
+    </div>
 </div>
 
 @section Scripts {
