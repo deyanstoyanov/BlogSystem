@@ -5,59 +5,63 @@
     ViewBag.Title = Model.Title;
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="pull-left blog-page-header blog-gray-info blog-word-wrap">@ViewBag.Title</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="pull-left blog-gray-info blog-word-wrap">@ViewBag.Title</h2>
+        </div>
     </div>
 </div>
 
+
 <hr/>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="blog-post-tags">
-            <ul class="list-unstyled list-inline blog-info">
-                <li>
-                    <i class="glyphicon glyphicon-calendar"></i>
-                    @Model.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
-                </li>
-                <li>
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    @Model.Author
-                </li>
-                @if (User.IsInRole(GlobalConstants.AdminRoleName))
-                {
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="blog-post-tags">
+                <ul class="list-unstyled list-inline blog-info">
                     <li>
-                        <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-info">
-                            <i class="glyphicon glyphicon-th-list"></i>
-                            <span>Post Details</span>
-                        </a>
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        @Model.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
                     </li>
                     <li>
-                        <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-primary">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            <span>Edit Post</span>
-                        </a>
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        @Model.Author
                     </li>
-                    <li>
-                        <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-danger">
-                            <i class="glyphicon glyphicon-erase"></i>
-                            <span>Delete Post</span>
-                        </a>
-                    </li>
-                }
+                    @if (User.IsInRole(GlobalConstants.AdminRoleName))
+                    {
+                        <li>
+                            <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-info">
+                                <i class="glyphicon glyphicon-menu-hamburger"></i>
+                                <span>Post Details</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                <span>Edit Post</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Delete Post</span>
+                            </a>
+                        </li>
+                    }
 
-            </ul>
+                </ul>
 
-            <hr/>
+                <hr />
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-12">
-        <div class="blog-word-wrap">
-            @Html.Raw(Model.Content)
+        <div class="col-md-12">
+            <div class="blog-word-wrap">
+                @Html.Raw(Model.Content)
+            </div>
         </div>
-    </div>
 
-    <br/>
+        <br />
+    </div>
 </div>
