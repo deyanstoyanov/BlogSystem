@@ -1,8 +1,10 @@
 ﻿@using BlogSystem.Common
+@using BlogSystem.Web.Models.CommentInputModels
 @model BlogSystem.Web.Models.BlogViewModels.BlogPostViewModel
 
 @{
     ViewBag.Title = Model.Title;
+    const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
 <div class="container">
@@ -73,7 +75,7 @@
             foreach (var comment in Model.Comments)
             {
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body blog-word-wrap">
                         <div class="media">
                             <div class="media-heading">
                                 <ul class="list-unstyled list-inline">
@@ -89,7 +91,7 @@
                                 <hr/>
                             </div>
                             <div class="panel-body">
-                                @comment.Content
+                                @Html.Raw(comment.Content)
                             </div>
                         </div>
                     </div>
@@ -98,9 +100,12 @@
         }
         else
         {
-            <h4>No available comments.</h4>
+            <h4>No available comments</h4>
         }
 
+    </div>
+    <div class="col-md-12">
+        @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CommentInputModel(Model.Id))
     </div>
 </div>
 

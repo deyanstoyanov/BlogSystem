@@ -238,12 +238,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Administration\Controllers\BlogPostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Models\HomeViewModels\IndexAdminPageViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,6 +265,8 @@
     <Compile Include="Models\AccountViewModels\SendCodeViewModel.cs" />
     <Compile Include="Models\AccountViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Models\BlogViewModels\BlogPostViewModel.cs" />
+    <Compile Include="Models\CommentInputModels\CommentInputModel.cs" />
+    <Compile Include="Models\CommentViewModels\CommentViewModel.cs" />
     <Compile Include="Models\HomeViewModels\BlogPostConciseViewModel.cs" />
     <Compile Include="Models\HomeViewModels\IndexPageViewModel.cs" />
     <Compile Include="Models\ManageViewModels\AddPhoneNumberViewModel.cs" />
@@ -309,6 +313,11 @@
     <Content Include="Areas\Administration\Views\BlogPosts\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\BlogPosts\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\ApplicationUsers\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -533,6 +542,9 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\_CreateComment.cshtml" />
+    <Content Include="Views\Shared\_LoginRegisterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

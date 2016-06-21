@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     using BlogSystem.Data.Common.Models;
 
@@ -11,7 +12,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
+        [AllowHtml]
         public string Content { get; set; }
 
         [Required]
