@@ -52,7 +52,7 @@
 
                 </ul>
 
-                <hr />
+                <hr/>
             </div>
         </div>
 
@@ -61,7 +61,46 @@
                 @Html.Raw(Model.Content)
             </div>
         </div>
+    </div>
 
-        <br />
+    <hr/>
+    <div class="col-md-12">
+        <h3 class="text-center">Comments</h3>
+
+        <hr/>
+        @if (Model.Comments.Any())
+        {
+            foreach (var comment in Model.Comments)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-heading">
+                                <ul class="list-unstyled list-inline">
+                                    <li>
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        <span>@comment.User </span>
+                                    </li>
+                                    <li>
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                        <span>@comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")</span>
+                                    </li>
+                                </ul>
+                                <hr/>
+                            </div>
+                            <div class="panel-body">
+                                @comment.Content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h4>No available comments.</h4>
+        }
+
     </div>
 </div>
+
