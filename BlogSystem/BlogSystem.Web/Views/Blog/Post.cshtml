@@ -1,5 +1,6 @@
 ﻿@using BlogSystem.Common
 @using BlogSystem.Web.Models.CommentInputModels
+@using Microsoft.AspNet.Identity
 @model BlogSystem.Web.Models.BlogViewModels.BlogPostViewModel
 
 @{
@@ -87,10 +88,19 @@
                                         <i class="glyphicon glyphicon-calendar"></i>
                                         <span>@comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")</span>
                                     </li>
+                                    @if (User.Identity.IsAuthenticated && (User.Identity.GetUserId() == comment.UserId || User.IsInRole(GlobalConstants.AdminRoleName)))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-warning btn-sm">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                                <span>Edit Comment</span>
+                                            </a>
+                                        </li>
+                                    }
                                 </ul>
                                 <hr/>
                             </div>
-                            <div class="panel-body">
+                            <div>
                                 @Html.Raw(comment.Content)
                             </div>
                         </div>
@@ -106,6 +116,8 @@
     </div>
     <div class="col-md-12">
         @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CommentInputModel(Model.Id))
+        <hr/>
     </div>
+
 </div>
 

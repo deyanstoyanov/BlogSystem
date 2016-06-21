@@ -13,12 +13,16 @@
 
         [Required]
         [AllowHtml]
+        [DataType(DataType.Html)]
+        [UIHint("tinymce_full")]
         public string Content { get; set; }
 
         [Required]
         public int BlogPostId { get; set; }
 
         public virtual BlogPost BlogPost { get; set; }
+
+        public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 

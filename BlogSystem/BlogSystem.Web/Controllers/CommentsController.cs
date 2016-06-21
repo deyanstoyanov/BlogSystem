@@ -1,7 +1,9 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
+    using System.Net;
     using System.Web.Mvc;
 
+    using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Models.CommentInputModels;
@@ -20,7 +22,13 @@
         {
             if (this.ModelState.IsValid)
             {
-                var newComment = new PostComment { Content = comment.Content, BlogPostId = id, User = this.UserProfile };
+                var newComment = new PostComment
+                                     {
+                                         Content = comment.Content, 
+                                         BlogPostId = id, 
+                                         User = this.UserProfile, 
+                                         UserId = this.UserProfile.Id
+                                     };
 
                 this.Data.PostComments.Add(newComment);
                 this.Data.SaveChanges();
@@ -29,6 +37,46 @@
             }
 
             return this.Content("Content is required");
+        }
+
+        // GET: Comments/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var postComment = this.Data.PostComments.Find(id);
+            if (postComment == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            if (postComment.UserId != this.UserProfile.Id && !this.User.IsInRole(GlobalConstants.AdminRoleName))
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(postComment);
+        }
+
+        // POST: Comments/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(
+            [Bind(Include = "Id,Content,BlogPostId,UserId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] PostComment
+                postComment)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.Data.PostComments.Update(postComment);
+                this.Data.SaveChanges();
+
+                return this.RedirectToAction("Post", "Blog", new { id = postComment.BlogPostId });
+            }
+
+            return this.View(postComment);
         }
     }
 }
