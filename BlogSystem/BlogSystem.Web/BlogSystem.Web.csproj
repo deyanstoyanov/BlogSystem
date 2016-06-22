@@ -241,6 +241,7 @@
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Administration\Controllers\BlogPostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Models\ApplicationUsersViewModels\ApplicationUserViewModel.cs" />
     <Compile Include="Areas\Administration\Models\HomeViewModels\IndexAdminPageViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
