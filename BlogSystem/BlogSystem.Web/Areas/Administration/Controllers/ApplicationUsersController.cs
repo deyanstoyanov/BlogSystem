@@ -1,6 +1,7 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -21,6 +22,23 @@
             var model = this.Data.Users.All().ProjectTo<ApplicationUserViewModel>().ToList();
 
             return this.View(model);
+        }
+
+        // GET: Administration/ApplicationUsers/Details/5
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var applicationUser = this.Data.Users.Find(id);
+            if (applicationUser == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(applicationUser);
         }
     }
 }

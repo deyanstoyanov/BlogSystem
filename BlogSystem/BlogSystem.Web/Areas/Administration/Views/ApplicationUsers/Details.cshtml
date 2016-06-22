@@ -1,0 +1,73 @@
+﻿@model BlogSystem.Data.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Details for application user";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="blog-word-wrap">
+                <h2 class="blog-gray-info blog-post-title">@Model.UserName</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div data-toggle="collapse" data-target="#postDetails" class="panel-heading blog-panel-heading">
+                        <div class="panel-title">
+                            <i class="glyphicon glyphicon-collapse-down"></i>
+                            User Details
+                        </div>
+                    </div>
+                    <div id="postDetails" class="panel-collapse">
+                        <div class="panel-body blog-word-wrap">
+                            <ul class="list-unstyled">
+                                <li class="col-md-4 col-sm-3">
+                                    <span class="profile-label"><strong>User Id: </strong></span>
+                                    @Html.DisplayFor(model => model.Id)
+                                </li>
+                                <li class="col-md-3 col-sm-3">
+                                    <span class="profile-label"><strong>Email: </strong></span>
+                                    @Html.DisplayFor(model => model.Email)
+                                </li>
+                                <li class="col-md-2 col-sm-3">
+                                    <span class="profile-label"><strong>UserName: </strong></span>
+                                    @Html.DisplayFor(model => model.UserName)
+                                </li>
+                                <li class="col-md-3 col-sm-3">
+                                    <span class="profile-label"><strong>Password Hash: </strong></span>
+                                    @Html.DisplayFor(model => model.PasswordHash)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-primary">
+            <i class="glyphicon glyphicon-align-justify"></i>
+            <span>Application Users</span>
+        </a>
+    </div>
+</div>

@@ -58,3 +58,8 @@
 #blog-admin-navbar {
     color: red;
 }
+
+.profile-label {
+    display: block;
+    color: #666;
+}

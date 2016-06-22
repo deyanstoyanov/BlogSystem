@@ -63,15 +63,20 @@
                     <td>
                         @if (item.IsAdmin)
                         {
-                            <p>Yes</p>
+                            <span class="label label-primary">Admin</span>
                         }
                         else
                         {
-                            <p>No</p>
+                            <span class="label label-success">User</span>
                         }
 
                     </td>
-                    <td></td>
+                    <td>
+                        <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = item.Id })" class="btn btn-info btn-sm center-block">
+                            <i class="glyphicon glyphicon-menu-hamburger"></i>
+                            <span>Details</span>
+                        </a>
+                    </td>
                 </tr>
             }
 
