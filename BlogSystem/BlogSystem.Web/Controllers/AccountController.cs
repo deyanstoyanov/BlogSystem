@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -157,9 +158,25 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            if (this.userManager.FindByEmail(model.Email) != null)
+            {
+                this.ModelState.AddModelError("Email", "Email is already registered");
+            }
+
+            if (this.userManager.FindByName(model.UserName) != null)
+            {
+                this.ModelState.AddModelError("UserName", "Username is already registered");
+            }
+
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                               {
+                                   UserName = model.UserName, 
+                                   Email = model.Email, 
+                                   CreatedOn = DateTime.Now
+                               };
+
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
