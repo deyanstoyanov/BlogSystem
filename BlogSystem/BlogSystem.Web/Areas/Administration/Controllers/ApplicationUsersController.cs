@@ -17,17 +17,24 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
 
+    using PagedList;
+
     public class ApplicationUsersController : AdministrationController
     {
+        private const int UsersPerPageDefaultValue = 6;
+
         public ApplicationUsersController(IBlogSystemData data)
             : base(data)
         {
         }
 
         // GET: Administration/ApplicationUsers
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var model = this.Data.Users.All().ProjectTo<ApplicationUserViewModel>().ToList();
+            int pageNumber = page ?? 1;
+
+            var users = this.Data.Users.All().OrderByDescending(x => x.CreatedOn).ProjectTo<ApplicationUserViewModel>().ToList();
+            var model = new PagedList<ApplicationUserViewModel>(users, pageNumber, UsersPerPageDefaultValue);
 
             return this.View(model);
         }
