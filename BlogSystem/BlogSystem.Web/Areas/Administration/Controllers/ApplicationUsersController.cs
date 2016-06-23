@@ -3,16 +3,19 @@
     using System;
     using System.Linq;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
 
+    using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Areas.Administration.Models.ApplicationUsersInputModels;
     using BlogSystem.Web.Areas.Administration.Models.ApplicationUsersViewModels;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
 
     public class ApplicationUsersController : AdministrationController
     {
@@ -103,8 +106,8 @@
 
                     // userManager.RemovePassword(applicationUser.Id);       
                     // userManager.AddPassword(applicationUser.Id, applicationUser.PasswordHash);
-                    var newPassword = userManager.PasswordHasher.HashPassword(applicationUser.PasswordHash);
-                    user.PasswordHash = newPassword;
+                    var newHashedPassword = userManager.PasswordHasher.HashPassword(applicationUser.PasswordHash);
+                    user.PasswordHash = newHashedPassword;
                     user.SecurityStamp = Guid.NewGuid().ToString();
                 }
 
@@ -115,6 +118,41 @@
             }
 
             return this.View(applicationUser);
+        }
+
+        // GET: Administration/ApplicationUsers/Create
+        public ActionResult Create()
+        {
+            return this.View();
+        }
+
+        // POST: Administration/ApplicationUsers/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ApplicationUserCreateModel userModel)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var applicationUser = new ApplicationUser
+                                          {
+                                              Email = userModel.Email, 
+                                              UserName = userModel.UserName, 
+                                              PasswordHash = userModel.Password
+                                          };
+
+                var userManager = this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var userCreateResult = userManager.Create(applicationUser, applicationUser.PasswordHash);
+                if (!userCreateResult.Succeeded)
+                {
+                    return this.Content(string.Join("; ", userCreateResult.Errors));
+                }
+
+                this.Data.SaveChanges();
+
+                return this.RedirectToAction("Index");
+            }
+
+            return this.View(userModel);
         }
     }
 }
