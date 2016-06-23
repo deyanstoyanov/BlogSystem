@@ -34,7 +34,7 @@
                     <div data-toggle="collapse" data-target="#postDetails" class="panel-heading blog-panel-heading">
                         <div class="panel-title">
                             <i class="glyphicon glyphicon-collapse-down"></i>
-                            User Details
+                            <strong>User Details</strong>
                         </div>
                     </div>
                     <div id="postDetails" class="panel-collapse">
@@ -76,10 +76,69 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div data-toggle="collapse" data-target="#postShortContent" class="panel-heading blog-panel-heading">
+                        <div class="panel-title">
+                            <i class="glyphicon glyphicon-collapse-down"></i>
+                            <strong>User Comments - (@(Model.Comments.Count) available comments)</strong>
+                        </div>
+                    </div>
+                    <div id="postShortContent" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @if (Model.Comments.Any())
+                            {
+                                foreach (var comment in Model.Comments)
+                                {
+                                    <div class="panel panel-default">
+                                        <div class="panel-body blog-word-wrap">
+                                            <div class="col-md-12">
+                                                <h3>
+                                                    <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = comment.BlogPostId })@($"#comment-{comment.Id}")">
+                                                        @comment.BlogPost.Title
+                                                    </a>
+                                                </h3>
+                                                <p>
+                                                    <span class="post-details">Author:</span>
+                                                    @comment.BlogPost.Author.UserName
+                                                    <strong>|</strong>
+                                                    <span class="post-details">Commented On: </span>
+                                                    @comment.CreatedOn
+                                                    <strong>|</strong>
+                                                    <span class="post-details">Modified On: </span>
+                                                    @comment.ModifiedOn
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <h4 class="blog-gray-info">No available comments</h4>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <div>
         <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-primary">
             <i class="glyphicon glyphicon-align-justify"></i>
             <span>Application Users</span>
         </a>
+        <a href="@Url.Action("Edit", "ApplicationUsers", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
+            <i class="glyphicon glyphicon-edit"></i>
+            <span>Edit User</span>
+        </a>
     </div>
+
+
 </div>
