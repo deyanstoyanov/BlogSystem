@@ -75,33 +75,35 @@
         {
             foreach (var comment in Model.Comments)
             {
-                <div class="panel panel-default">
-                    <div class="panel-body blog-word-wrap">
-                        <div class="media">
-                            <div class="media-heading">
-                                <ul class="list-unstyled list-inline">
-                                    <li>
-                                        <i class="glyphicon glyphicon-user"></i>
-                                        <span>@comment.User </span>
-                                    </li>
-                                    <li>
-                                        <i class="glyphicon glyphicon-calendar"></i>
-                                        <span>@comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")</span>
-                                    </li>
-                                    @if (User.Identity.IsAuthenticated && (User.Identity.GetUserId() == comment.UserId || User.IsInRole(GlobalConstants.AdminRoleName)))
-                                    {
+                <div id="comment-@comment.Id">
+                    <div class="panel panel-default">
+                        <div class="panel-body blog-word-wrap">
+                            <div class="media">
+                                <div class="media-heading">
+                                    <ul class="list-unstyled list-inline">
                                         <li>
-                                            <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-warning btn-sm">
-                                                <i class="glyphicon glyphicon-edit"></i>
-                                                <span>Edit Comment</span>
-                                            </a>
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            <span>@comment.User </span>
                                         </li>
-                                    }
-                                </ul>
-                                <hr/>
-                            </div>
-                            <div>
-                                @Html.Raw(comment.Content)
+                                        <li>
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                            <span>@comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")</span>
+                                        </li>
+                                        @if (User.Identity.IsAuthenticated && (User.Identity.GetUserId() == comment.UserId || User.IsInRole(GlobalConstants.AdminRoleName)))
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-warning btn-sm">
+                                                    <i class="glyphicon glyphicon-edit"></i>
+                                                    <span>Edit Comment</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <hr/>
+                                </div>
+                                <div>
+                                    @Html.Raw(comment.Content)
+                                </div>
                             </div>
                         </div>
                     </div>
