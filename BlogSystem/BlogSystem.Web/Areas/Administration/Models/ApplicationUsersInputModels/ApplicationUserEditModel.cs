@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Models.ApplicationUsersInputModels
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class ApplicationUserEditModel
@@ -21,5 +22,7 @@
 
         [Required]
         public string SecurityStamp { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

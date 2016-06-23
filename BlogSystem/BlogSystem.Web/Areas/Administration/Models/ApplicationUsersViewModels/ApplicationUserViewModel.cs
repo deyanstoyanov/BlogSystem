@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Models.ApplicationUsersViewModels
 {
+    using System;
     using System.Linq;
 
     using AutoMapper;
@@ -23,6 +24,10 @@
         public string PasswordHash { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

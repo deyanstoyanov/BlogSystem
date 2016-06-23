@@ -56,6 +56,18 @@
                                     <span class="profile-label"><strong>Password Hash: </strong></span>
                                     @Html.DisplayFor(model => model.PasswordHash)
                                 </li>
+                                <li class="col-md-4 col-sm-3">
+                                    <span class="profile-label"><strong>SecurityStamp: </strong></span>
+                                    @Html.DisplayFor(model => model.SecurityStamp)
+                                </li>
+                                <li class="col-md-3 col-sm-3">
+                                    <span class="profile-label"><strong>Created On: </strong></span>
+                                    @Html.DisplayFor(model => model.CreatedOn)
+                                </li>
+                                <li class="col-md-3 col-sm-3">
+                                    <span class="profile-label"><strong>Modified On: </strong></span>
+                                    @Html.DisplayFor(model => model.ModifiedOn)
+                                </li>
                             </ul>
                         </div>
                     </div>

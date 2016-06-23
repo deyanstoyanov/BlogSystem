@@ -69,7 +69,8 @@
                                 Email = applicationUser.Email, 
                                 UserName = applicationUser.UserName, 
                                 PasswordHash = applicationUser.PasswordHash, 
-                                SecurityStamp = applicationUser.SecurityStamp
+                                SecurityStamp = applicationUser.SecurityStamp, 
+                                CreatedOn = applicationUser.CreatedOn
                             };
 
             return this.View(model);
@@ -99,13 +100,11 @@
                 user.Id = applicationUser.Id;
                 user.Email = applicationUser.Email;
                 user.UserName = applicationUser.UserName;
+                user.CreatedOn = applicationUser.CreatedOn;
 
                 if (user.PasswordHash != applicationUser.PasswordHash)
                 {
                     var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
-
-                    // userManager.RemovePassword(applicationUser.Id);       
-                    // userManager.AddPassword(applicationUser.Id, applicationUser.PasswordHash);
                     var newHashedPassword = userManager.PasswordHasher.HashPassword(applicationUser.PasswordHash);
                     user.PasswordHash = newHashedPassword;
                     user.SecurityStamp = Guid.NewGuid().ToString();
@@ -137,7 +136,8 @@
                                           {
                                               Email = userModel.Email, 
                                               UserName = userModel.UserName, 
-                                              PasswordHash = userModel.Password
+                                              PasswordHash = userModel.Password, 
+                                              CreatedOn = DateTime.Now
                                           };
 
                 var userManager = this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();

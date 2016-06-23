@@ -24,17 +24,20 @@
         </p>
         <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
             <tr>
-                <th class="col-md-3">
+                <th class="col-md-2">
                     Id
                 </th>
-                <th class="col-md-3">
+                <th class="col-md-2">
                     Email
                 </th>
                 <th class="col-md-2">
                     UserName
                 </th>
                 <th class="col-md-2">
-                    PasswordHash
+                    Created On
+                </th>
+                <th class="col-md-2">
+                    Modified On
                 </th>
                 <th class="col-md-1">
                     Role
@@ -57,7 +60,10 @@
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PasswordHash)
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
                     </td>
                     <td>
                         @if (item.IsAdmin)
