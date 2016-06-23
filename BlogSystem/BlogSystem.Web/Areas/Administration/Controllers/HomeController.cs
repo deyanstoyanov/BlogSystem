@@ -17,7 +17,15 @@
         public ActionResult Index()
         {
             var blogPosts = this.Data.Posts.All().Count();
-            var model = new IndexAdminPageViewModel { BlogPostsCount = blogPosts };
+            var comments = this.Data.PostComments.All().Count();
+            var applicationUsers = this.Data.Users.All().Count();
+
+            var model = new IndexAdminPageViewModel
+                            {
+                                BlogPostsCount = blogPosts, 
+                                CommentsCount = comments, 
+                                ApplicationUsersCount = applicationUsers
+                            };
 
             return this.View(model);
         }

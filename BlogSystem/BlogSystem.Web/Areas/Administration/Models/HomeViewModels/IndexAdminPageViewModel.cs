@@ -3,5 +3,9 @@
     public class IndexAdminPageViewModel
     {
         public int BlogPostsCount { get; set; }
+
+        public int CommentsCount { get; set; }
+
+        public int ApplicationUsersCount { get; set; }
     }
 }

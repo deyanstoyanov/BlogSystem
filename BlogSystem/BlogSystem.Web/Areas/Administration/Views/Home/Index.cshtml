@@ -17,7 +17,10 @@
     <div class="row">
         <div class="col-md-6">
             <h3>
-                <strong>@Html.ActionLink("Blog Posts", "Index", "BlogPosts", new { area = "Administration" }, null)</strong>
+                <strong>Blog Posts</strong>
+                <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-primary">
+                    <span>Manage</span>
+                </a>
             </h3>
 
             <table class="blog-table-word-wrap table table-bordered table-striped table-hover ">
@@ -34,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>@Model.BlogPostsCount</td>
-                    <td>0</td>
+                    <td>@Model.CommentsCount</td>
                     <td>
                         <a href="@Url.Action("Create", "BlogPosts", new { area = "Administration" })" class="btn btn-success btn-sm center-block">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -44,8 +47,36 @@
                 </tr>
             </table>
         </div>
+
+
+        <div class="col-md-4">
+            <h3>
+                <strong>Application Users</strong>
+                <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-primary">
+                    <span>Manage</span>
+                </a>
+            </h3>
+
+            <table class="blog-table-word-wrap table table-bordered table-striped table-hover ">
+                <tr>
+                    <td class="col-md-2">
+                        <strong>Application Users</strong>
+                    </td>
+                    <td class="col-md-2">
+                        <strong>Actions</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Model.ApplicationUsersCount</td>
+                    <td>
+                        <a href="@Url.Action("Create", "ApplicationUsers", new { area = "Administration" })" class="btn btn-success btn-sm center-block">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Add New User</span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </div>
-
-
-
