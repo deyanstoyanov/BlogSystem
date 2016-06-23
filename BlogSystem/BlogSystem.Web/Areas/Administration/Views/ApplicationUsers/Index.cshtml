@@ -16,13 +16,6 @@
 
 <div class="container">
     <div class="row">
-        <p>
-            <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-success">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Create New User</span>
-            </a>
-        </p>
-
         <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
             <tr>
                 <th class="col-md-3">
@@ -75,6 +68,10 @@
                         <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = item.Id })" class="btn btn-info btn-sm center-block">
                             <i class="glyphicon glyphicon-menu-hamburger"></i>
                             <span>Details</span>
+                        </a>
+                        <a href="@Url.Action("Edit", "ApplicationUsers", new { area = "Administration", id = item.Id })" class="btn btn-warning btn-sm center-block">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <span>Edit</span>
                         </a>
                     </td>
                 </tr>
