@@ -241,10 +241,10 @@
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Administration\Controllers\BlogPostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Administration\Models\ApplicationUsersInputModels\ApplicationUserCreateModel.cs" />
-    <Compile Include="Areas\Administration\Models\ApplicationUsersInputModels\ApplicationUserEditModel.cs" />
-    <Compile Include="Areas\Administration\Models\ApplicationUsersViewModels\ApplicationUserViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\HomeViewModels\IndexAdminPageViewModel.cs" />
+    <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserCreateModel.cs" />
+    <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -259,28 +259,28 @@
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
-    <Compile Include="Models\AccountViewModels\ForgotPasswordViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\ForgotViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\LoginViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\RegisterViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\ResetPasswordViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\SendCodeViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\VerifyCodeViewModel.cs" />
-    <Compile Include="Models\BlogViewModels\BlogPostViewModel.cs" />
-    <Compile Include="Models\CommentInputModels\CommentInputModel.cs" />
-    <Compile Include="Models\CommentViewModels\CommentViewModel.cs" />
-    <Compile Include="Models\HomeViewModels\BlogPostConciseViewModel.cs" />
-    <Compile Include="Models\HomeViewModels\IndexPageViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\AddPhoneNumberViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\ChangePasswordViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\ConfigureTwoFactorViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\ExternalLoginListViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\FactorViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\ManageLoginsViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\IndexViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\SetPasswordViewModel.cs" />
-    <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Blog\BlogPostViewModel.cs" />
+    <Compile Include="InputModels\Comment\CommentInputModel.cs" />
+    <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Home\BlogPostConciseViewModel.cs" />
+    <Compile Include="ViewModels\Home\IndexPageViewModel.cs" />
+    <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\Manage\FactorViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
+    <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -552,6 +552,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Administration\" />
+    <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
