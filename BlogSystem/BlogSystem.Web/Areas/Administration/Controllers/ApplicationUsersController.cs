@@ -10,8 +10,8 @@
 
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.Models.ApplicationUsersInputModels;
-    using BlogSystem.Web.Areas.Administration.Models.ApplicationUsersViewModels;
+    using BlogSystem.Web.Areas.Administration.InputModels.ApplicationUsers;
+    using BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;

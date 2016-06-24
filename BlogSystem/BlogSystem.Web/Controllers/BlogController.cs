@@ -6,7 +6,7 @@
     using AutoMapper.QueryableExtensions;
 
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Models.BlogViewModels;
+    using BlogSystem.Web.ViewModels.Blog;
 
     public class BlogController : BaseController
     {

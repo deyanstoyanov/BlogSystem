@@ -8,7 +8,7 @@
 
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Models;
+    using BlogSystem.Web.ViewModels.Account;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;

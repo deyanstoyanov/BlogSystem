@@ -6,7 +6,7 @@
     using AutoMapper.QueryableExtensions;
 
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Models.HomeViewModels;
+    using BlogSystem.Web.ViewModels.Home;
 
     using PagedList;
 

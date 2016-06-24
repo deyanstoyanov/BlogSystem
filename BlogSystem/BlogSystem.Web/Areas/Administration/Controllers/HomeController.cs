@@ -4,7 +4,7 @@
     using System.Web.Mvc;
 
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.Models.HomeViewModels;
+    using BlogSystem.Web.Areas.Administration.ViewModels.Home;
 
     public class HomeController : AdministrationController
     {

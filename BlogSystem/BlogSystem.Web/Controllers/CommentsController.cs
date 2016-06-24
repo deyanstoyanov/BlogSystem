@@ -6,7 +6,7 @@
     using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Models.CommentInputModels;
+    using BlogSystem.Web.InputModels.Comment;
 
     [Authorize]
     public class CommentsController : BaseController
