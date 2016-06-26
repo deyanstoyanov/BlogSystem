@@ -241,6 +241,7 @@
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Administration\Controllers\BlogPostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PostCommentsController.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserCreateModel.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
@@ -321,6 +322,8 @@
     <Content Include="Areas\Administration\Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\PostComments\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\PostComments\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
