@@ -151,17 +151,17 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-warning"/>
+                <input type="submit" value="Delete" class="btn btn-danger"/>
 
                 @if (Request.UrlReferrer == null)
                 {
-                    <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-danger">
+                    <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-default">
                         <span>Cancel</span>
                     </a>
                 }
                 else
                 {
-                    <a href="@Request.UrlReferrer" class="btn btn-danger">
+                    <a href="@Request.UrlReferrer" class="btn btn-default">
                         <span>Cancel</span>
                     </a>
                 }

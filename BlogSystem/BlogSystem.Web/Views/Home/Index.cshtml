@@ -29,7 +29,7 @@
                                         <h3>@Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id }, new { @class = "blog-post-title" })</h3>
                                     </div>
 
-                                    <hr />
+                                    <hr/>
 
                                     <div class="blog-post-tags blog-post-home-page-info">
                                         <ul class="list-unstyled list-inline blog-post-tags">
@@ -41,9 +41,16 @@
                                                 <i class="glyphicon glyphicon-pencil"></i>
                                                 @post.Author
                                             </li>
+                                            <li>
+                                                <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = post.Id })@("#comments")">
+                                                    <i class="glyphicon glyphicon-comment"></i>
+                                                    @(post.CommentsCount) comments
+                                                </a>
+
+                                            </li>
                                         </ul>
 
-                                        <hr />
+                                        <hr/>
 
                                     </div>
                                 </div>

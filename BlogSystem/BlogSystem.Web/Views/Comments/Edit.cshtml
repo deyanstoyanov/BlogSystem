@@ -22,11 +22,7 @@
         <div class="form-horizontal">
             @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
-
-            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
             @Html.HiddenFor(model => model.BlogPostId)
-
-            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
             @Html.HiddenFor(model => model.UserId)
 
             <div class="form-group">

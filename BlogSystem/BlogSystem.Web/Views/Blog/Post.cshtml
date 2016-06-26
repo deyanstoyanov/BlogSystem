@@ -31,28 +31,6 @@
                         <i class="glyphicon glyphicon-pencil"></i>
                         @Model.Author
                     </li>
-                    @if (User.IsInRole(GlobalConstants.AdminRoleName))
-                    {
-                        <li>
-                            <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-info">
-                                <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                <span>Post Details</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
-                                <i class="glyphicon glyphicon-edit"></i>
-                                <span>Edit Post</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash"></i>
-                                <span>Delete Post</span>
-                            </a>
-                        </li>
-                    }
-
                 </ul>
 
                 <hr/>
@@ -65,10 +43,28 @@
             </div>
         </div>
     </div>
+    <p>
+        @if (User.IsInRole(GlobalConstants.AdminRoleName))
+        {
+            <hr/>
 
+            <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-info btn-sm">
+                <i class="glyphicon glyphicon-menu-hamburger"></i>
+                <span>Post Details</span>
+            </a>
+            <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning btn-sm">
+                <i class="glyphicon glyphicon-edit"></i>
+                <span>Edit Post</span>
+            </a>
+            <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-danger btn-sm">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Delete Post</span>
+            </a>
+        }
+    </p>
     <hr/>
     <div class="col-md-12">
-        <h3 class="text-center">Comments</h3>
+        <h3 class="text-center" id="comments">Comments</h3>
 
         <hr/>
         @if (Model.Comments.Any())
@@ -89,22 +85,32 @@
                                             <i class="glyphicon glyphicon-calendar"></i>
                                             <span>@comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")</span>
                                         </li>
-                                        @if (User.Identity.IsAuthenticated && (User.Identity.GetUserId() == comment.UserId || User.IsInRole(GlobalConstants.AdminRoleName)))
-                                        {
-                                            <li>
-                                                <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-warning btn-sm">
-                                                    <i class="glyphicon glyphicon-edit"></i>
-                                                    <span>Edit Comment</span>
-                                                </a>
-                                            </li>
-                                        }
                                     </ul>
+
                                     <hr/>
                                 </div>
                                 <div>
                                     @Html.Raw(comment.Content)
                                 </div>
                             </div>
+                            <p>
+                                @if (User.Identity.IsAuthenticated && (User.Identity.GetUserId() == comment.UserId || User.IsInRole(GlobalConstants.AdminRoleName)))
+                                {
+                                    <hr/>
+                                    <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-warning btn-sm">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                        <span>Edit Comment</span>
+                                    </a>
+                                }
+
+                                @if (User.IsInRole(GlobalConstants.AdminRoleName))
+                                {
+                                    <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId })" class="btn btn-info btn-sm">
+                                        <i class="glyphicon glyphicon-menu-hamburger"></i>
+                                        <span>User Details</span>
+                                    </a>
+                                }
+                            </p>
                         </div>
                     </div>
                 </div>

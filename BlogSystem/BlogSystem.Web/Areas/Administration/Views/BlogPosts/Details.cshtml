@@ -36,7 +36,7 @@
                         Author Details
                     </div>
                 </div>
-                <div id="authorDetails" class="panel-collapse collapse">
+                <div id="authorDetails" class="panel-collapse collapsed">
                     <div class="panel-body blog-word-wrap">
                         <ul class="list-unstyled">
                             <li>
@@ -70,7 +70,7 @@
                         Post Details
                     </div>
                 </div>
-                <div id="postDetails" class="panel-collapse collapse">
+                <div id="postDetails" class="panel-collapse collapsed">
                     <div class="panel-body blog-word-wrap">
                         <ul class="list-unstyled">
                             <li>
@@ -133,6 +133,53 @@
                                         <div id="postContent" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                 @Html.DisplayFor(model => model.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div data-toggle="collapse" data-target="#postComments" class="panel-heading blog-panel-heading">
+                                            <div class="panel-title">
+                                                <i class="glyphicon glyphicon-collapse-down"></i>
+                                                <strong>Comments - (@(Model.Comments.Count()) comments) </strong>
+                                            </div>
+                                        </div>
+                                        <div id="postComments" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @foreach (var comment in Model.Comments)
+                                                {
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body blog-word-wrap">
+                                                            <div class="col-md-12">
+                                                                <h3>
+                                                                    <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = comment.BlogPostId })@($"#comment-{comment.Id}")">
+                                                                        @comment.BlogPost.Title
+                                                                    </a>
+                                                                    <a href="@Url.Action("Edit", "Comments", new { area = string.Empty, id = comment.Id })" class="btn btn-warning btn-sm">
+                                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                                        <span>Edit</span>
+                                                                    </a>
+                                                                </h3>
+                                                                <p>
+                                                                    <span class="post-details">User:</span>
+                                                                    @comment.BlogPost.Author.UserName
+                                                                    <strong>|</strong>
+                                                                    <span class="post-details">Commented On: </span>
+                                                                    @comment.CreatedOn
+                                                                    <strong>|</strong>
+                                                                    <span class="post-details">Modified On: </span>
+                                                                    @comment.ModifiedOn
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
