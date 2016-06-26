@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BlogSystem.Data.Models.PostComment>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BlogSystem.Data.Models.PostComment>
 
 @{
     ViewBag.Title = "All Comments";
@@ -80,7 +81,11 @@
             }
 
         </table>
-
+        <div class="col-md-12">
+            <div class="text-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", "PostComments", new { area = "Administration", page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
     </div>
 </div>
 

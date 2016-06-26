@@ -8,19 +8,31 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
 
+    using PagedList;
+
     public class PostCommentsController : AdministrationController
     {
+        private const int CommentsPerPageDefaultValue = 7;
+
         public PostCommentsController(IBlogSystemData data)
             : base(data)
         {
         }
 
         // GET: Administration/PostComments
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var postComments = this.Data.PostComments.All().Include(p => p.BlogPost).Include(p => p.User).ToList();
+            int pageNumber = page ?? 1;
 
-            return this.View(postComments);
+            var postComments =
+                this.Data.PostComments.All()
+                    .OrderByDescending(p => p.CreatedOn)
+                    .Include(p => p.BlogPost)
+                    .Include(p => p.User)
+                    .ToList();
+            var model = new PagedList<PostComment>(postComments, pageNumber, CommentsPerPageDefaultValue);
+
+            return this.View(model);
         }
 
         // GET: Administration/PostComments/Details/5
@@ -54,9 +66,6 @@
                 return this.HttpNotFound();
             }
 
-            this.ViewBag.BlogPostId = new SelectList(this.Data.Posts.All(), "Id", "Title", postComment.BlogPostId);
-            this.ViewBag.UserId = new SelectList(this.Data.Users.All(), "Id", "Email", postComment.UserId);
-
             return this.View(postComment);
         }
 
@@ -74,9 +83,6 @@
 
                 return this.RedirectToAction("Index");
             }
-
-            this.ViewBag.BlogPostId = new SelectList(this.Data.Posts.All(), "Id", "Title", postComment.BlogPostId);
-            this.ViewBag.UserId = new SelectList(this.Data.Users.All(), "Id", "Email", postComment.UserId);
 
             return this.View(postComment);
         }
