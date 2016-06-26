@@ -1,5 +1,6 @@
 namespace BlogSystem.Data.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -35,10 +36,13 @@ namespace BlogSystem.Data.Migrations
                 return;
             }
 
-            var admin = new ApplicationUser { Email = "admin@mysite.com", UserName = "Administrator" };
-
+            var admin = new ApplicationUser
+                            {
+                                Email = "admin@mysite.com", 
+                                UserName = "Administrator", 
+                                CreatedOn = DateTime.Now
+                            };
             this.userManager.Create(admin, "admin123456");
-
             this.userManager.AddToRole(admin.Id, GlobalConstants.AdminRoleName);
         }
 
