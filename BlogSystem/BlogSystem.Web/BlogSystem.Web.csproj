@@ -322,6 +322,7 @@
     <Content Include="Areas\Administration\Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Index.cshtml" />
+	<Content Include="Areas\Administration\Views\PostComments\Delete.cshtml" />
     <Content Include="Areas\Administration\Views\PostComments\Details.cshtml" />
 	<Content Include="Areas\Administration\Views\PostComments\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\PostComments\Index.cshtml" />

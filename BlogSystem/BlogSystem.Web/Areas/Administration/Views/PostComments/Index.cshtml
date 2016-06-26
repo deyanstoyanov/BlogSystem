@@ -76,6 +76,10 @@
                             <i class="glyphicon glyphicon-edit"></i>
                             <span>Edit</span>
                         </a>
+                        <a href="@Url.Action("Delete", "PostComments", new { area = "Administration", id = item.Id })" class="btn btn-danger btn-sm center-block ">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span>Delete</span>
+                        </a>
                     </td>
                 </tr>
             }
