@@ -93,24 +93,30 @@
                                     @Html.Raw(comment.Content)
                                 </div>
                             </div>
-                            <p>
-                                @if (User.Identity.IsAuthenticated && (User.Identity.GetUserId() == comment.UserId || User.IsInRole(GlobalConstants.AdminRoleName)))
+                                @if (User.Identity.IsAuthenticated)
                                 {
                                     <hr/>
-                                    <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-warning btn-sm">
-                                        <i class="glyphicon glyphicon-edit"></i>
-                                        <span>Edit Comment</span>
-                                    </a>
-                                }
+                                    if (User.Identity.GetUserId() == comment.UserId)
+                                    {
+                                        <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-default btn-sm">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                            <span>Edit Comment</span>
+                                        </a>
+                                    }
 
-                                @if (User.IsInRole(GlobalConstants.AdminRoleName))
-                                {
-                                    <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId })" class="btn btn-info btn-sm">
-                                        <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                        <span>User Details</span>
-                                    </a>
+                                    if (User.IsInRole(GlobalConstants.AdminRoleName))
+                                    {
+                                        <a href="@Url.Action("Edit", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-warning btn-sm">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                            <span>Edit Comment as Admin</span>
+                                        </a>
+                                        <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId })" class="btn btn-info btn-sm">
+                                            <i class="glyphicon glyphicon-menu-hamburger"></i>
+                                            <span>User Details</span>
+                                        </a>
+                                    }
                                 }
-                            </p>
+                               
                         </div>
                     </div>
                 </div>

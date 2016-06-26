@@ -3,7 +3,6 @@
     using System.Net;
     using System.Web.Mvc;
 
-    using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.InputModels.Comment;
@@ -53,7 +52,7 @@
                 return this.HttpNotFound();
             }
 
-            if (postComment.UserId != this.UserProfile.Id && !this.User.IsInRole(GlobalConstants.AdminRoleName))
+            if (postComment.UserId != this.UserProfile.Id)
             {
                 return this.HttpNotFound();
             }
