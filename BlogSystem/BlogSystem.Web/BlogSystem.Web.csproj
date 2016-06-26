@@ -323,6 +323,7 @@
     <Content Include="Areas\Administration\Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Areas\Administration\Views\PostComments\Details.cshtml" />
+	<Content Include="Areas\Administration\Views\PostComments\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\PostComments\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
