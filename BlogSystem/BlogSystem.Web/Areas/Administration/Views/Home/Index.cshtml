@@ -13,70 +13,90 @@
 
 <hr/>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h3>
-                <strong>Blog Posts</strong>
-                <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-primary">
+<div class="row">
+    
+    <div class="col-lg-4 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-tag admin-panel-icon-size"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">
+                            <span>@Model.BlogPostsCount</span>
+                        </div>
+                        <div>
+                            <span>Blog Posts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="clearfix">
+                <div class="panel-footer">
                     <span>Manage</span>
-                </a>
-            </h3>
-
-            <table class="blog-table-word-wrap table table-bordered table-striped table-hover ">
-                <tr>
-                    <td class="col-md-2">
-                        <strong>Blog Posts</strong>
-                    </td>
-                    <td class="col-md-2">
-                        <strong>Comments</strong>
-                    </td>
-                    <td class="col-md-2">
-                        <strong>Actions</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Model.BlogPostsCount</td>
-                    <td>@Model.CommentsCount</td>
-                    <td>
-                        <a href="@Url.Action("Create", "BlogPosts", new { area = "Administration" })" class="btn btn-success btn-sm center-block">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Add New Post</span>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+                    <span class="pull-right">
+                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
         </div>
-
-
-        <div class="col-md-4">
-            <h3>
-                <strong>Application Users</strong>
-                <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-primary">
-                    <span>Manage</span>
-                </a>
-            </h3>
-
-            <table class="blog-table-word-wrap table table-bordered table-striped table-hover ">
-                <tr>
-                    <td class="col-md-2">
-                        <strong>Application Users</strong>
-                    </td>
-                    <td class="col-md-2">
-                        <strong>Actions</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Model.ApplicationUsersCount</td>
-                    <td>
-                        <a href="@Url.Action("Create", "ApplicationUsers", new { area = "Administration" })" class="btn btn-success btn-sm center-block">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Add New User</span>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
     </div>
+
+    <div class="col-lg-4 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-comment admin-panel-icon-size"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">
+                            <span>@Model.CommentsCount</span>
+                        </div>
+                        <div>
+                            <span>Post Comments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "PostComments", new { area = "Administration" })" class="clearfix">
+                <div class="panel-footer">
+                    <span>Manage</span>
+                    <span class="pull-right">
+                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-user admin-panel-icon-size"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">
+                            <span>@Model.ApplicationUsersCount</span>
+                        </div>
+                        <div>
+                            <span>Application Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="clearfix">
+                <div class="panel-footer">
+                    <span>Manage</span>
+                    <span class="pull-right">
+                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+
 </div>

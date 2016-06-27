@@ -67,3 +67,11 @@
 .post-details {
     color: #666;
 }
+
+.huge {
+    font-size: 40px;
+}
+
+.admin-panel-icon-size {
+    font-size: 5em;
+}
