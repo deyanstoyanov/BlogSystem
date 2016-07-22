@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -22,12 +23,12 @@
             <ul class="nav navbar-nav">
                 <li> @Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
                 <li>
-                <li>
-                    <a href="@Url.Action("Index", "Home", new {area=  "Administration"})">
-                        <i class="glyphicon glyphicon-user"></i>
-                        <span>Administration</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Home", new { area = "Administration" })">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>Administration</span>
+                        </a>
+                    </li>
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")

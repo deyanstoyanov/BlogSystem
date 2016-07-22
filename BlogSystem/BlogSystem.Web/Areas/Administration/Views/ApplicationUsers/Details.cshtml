@@ -1,4 +1,5 @@
-﻿@model BlogSystem.Data.Models.ApplicationUser
+﻿@using System.Linq
+@model BlogSystem.Data.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Details for application user";
@@ -37,7 +38,7 @@
                             <strong>User Details</strong>
                         </div>
                     </div>
-                    <div id="postDetails" class="panel-collapse">
+                    <div id="postDetails" class="panel-collapse in">
                         <div class="panel-body blog-word-wrap">
                             <ul class="list-unstyled">
                                 <li class="col-md-4 col-sm-3">
