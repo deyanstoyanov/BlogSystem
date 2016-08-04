@@ -109,6 +109,10 @@
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NonFactors.Mvc.Grid, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NonFactors.Grid.Core.Mvc5.3.0.0\lib\net45\NonFactors.Mvc.Grid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -290,6 +294,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\site.blog.css" />
     <Content Include="Content\site.bootstrap.darkly.custom.css" />
@@ -322,9 +327,9 @@
     <Content Include="Areas\Administration\Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Index.cshtml" />
-	<Content Include="Areas\Administration\Views\PostComments\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\PostComments\Delete.cshtml" />
     <Content Include="Areas\Administration\Views\PostComments\Details.cshtml" />
-	<Content Include="Areas\Administration\Views\PostComments\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\PostComments\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\PostComments\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
@@ -339,6 +344,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MvcGrid\mvc-grid.js" />
+    <Content Include="Scripts\MvcGrid\mvc-grid.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -553,6 +560,9 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\_CreateComment.cshtml" />
     <Content Include="Views\Shared\_LoginRegisterPartial.cshtml" />
+    <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
+    <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
+    <Content Include="Views\Shared\MvcGrid\_AjaxGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
